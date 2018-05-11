@@ -1,6 +1,7 @@
 function VideoPlayer(video_id)
 {
     this.video = document.getElementById(video_id);
+    $(this.video).removeAttr("controls");
     $("#"+video_id).wrap('<div class="screen" id="'+video_id+'_parent"></div>');
     $("#"+ video_id+"_parent").append('<div class="controls">'+
         '<i class="material-icons control-button" id="' + video_id + '_play_pause">pause</i>'+
