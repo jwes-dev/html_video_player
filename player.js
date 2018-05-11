@@ -11,6 +11,11 @@ function VideoPlayer(video_id)
     this.seeker = document.getElementById(video_id+"_seeker");
     this.seek = true;
     this.play_pause = document.getElementById(video_id+"_play_pause");
+    if(this.video.playing)
+        $(this.play_pause).html("pause");
+    else
+        $(this.play_pause).html("play_arrow");
+
     this.video.onended = function()
     {
         this.video.currentTime = 0; 
@@ -55,4 +60,17 @@ function VideoPlayer(video_id)
         if(this.seek)
             this.seeker.value = (this.video.currentTime*100/this.video.duration);
     }.bind(this), 0.1);
+}
+
+
+function PlayerForAll()
+{
+    $("video").each(function(){
+        if($(this).attr("id") == "")
+        {
+            $(this).attr("id", "vpl"+this.id)
+            this.id++;
+        }
+        new VideoPlayer($(this).attr("id"));
+    });
 }
