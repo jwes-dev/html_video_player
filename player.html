@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Video</title>
+        <link href='https://fonts.googleapis.com/css?family=Material+Icons' rel='stylesheet' type='text/css'>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href='player.css' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <div style="width: 400px;height: 250px;">
+            <video src="images/sample.mp4" class="player" autoplay id="player1"></video>
+        </div>
+
+        <hr />
+        <div style="width: 400px;height: 250px;">
+                <video src="images/sample.mp4" class="player" autoplay id="player2"></video>
+        </div>
+        
+        <script src="js/jquery.min.js"></script>
+        <script src="player.js"></script>
+        <script>
+            var video1 = new VideoPlayer("player1");
+            var video2 = new VideoPlayer("player2");
+        </script>
+    </body>
+</html>
