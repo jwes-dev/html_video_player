@@ -10,35 +10,44 @@ function VideoPlayer(video_id)
     this.seeker = document.getElementById(video_id+"_seeker");
     this.seek = true;
     this.play_pause = document.getElementById(video_id+"_play_pause");
-    this.video.ended = function()
+    this.video.onended = function()
     {
+        this.video.currentTime = 0; 
         $(this.play_pause).html("play_arrow");
-    }
-    this.video.playing = function()
+    }.bind(this);
+
+    this.video.onplaying = function()
     {
         $(this.play_pause).html("pause");
-    }
+    }.bind(this);
+
+    this.video.onpause = function()
+    {
+        $(this.play_pause).html("play_arrow");
+    }.bind(this);
+
     $(this.seeker).mousedown(function(){
         this.seek = false;
     }.bind(this));
+    
     $(this.seeker).mouseup(function(){
         this.seek = true;
         this.video.currentTime = this.seeker.value * this.video.duration / 100;
     }.bind(this));
+
     $(this.seeker).change(function(){
         this.video.currentTime = this.seeker.value * this.video.duration / 100;
         this.seek = true;
     }.bind(this));
+
     $(this.play_pause).click(function(){
         if(this.video.paused)
         {
             this.video.play();
-            $(this.play_pause).html("pause");
         }
         else
         {
             this.video.pause();
-            $(this.play_pause).html("play_arrow");
         }
     }.bind(this));
     setInterval(function(){
